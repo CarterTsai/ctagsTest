@@ -410,6 +410,10 @@ let s:tlist_def_cs_settings = 'c#;d:macro;t:typedef;n:namespace;c:class;' .
 " cobol language
 let s:tlist_def_cobol_settings = 'cobol;d:data;f:file;g:group;p:paragraph;' .
                                \ 'P:program;s:section'
+
+" css
+let s:tlist_def_css_settings = 'css;c:class;i:id;s:selector' 
+
 " D programming language
 let s:tlist_def_d_settings = 'c++;n:namespace;v:variable;t:typedef;' .
                         \'c:class;g:enum;s:struct;u:union;f:function'
@@ -1482,12 +1486,12 @@ function! s:Tlist_Window_Exit_Only_Window()
     " Before quitting Vim, delete the taglist buffer so that
     " the '0 mark is correctly set to the previous buffer.
     if v:version < 700
-	if winbufnr(2) == -1
+	if winbufnr(3) == -1
             bdelete
 	    quit
 	endif
     else
-	if winbufnr(2) == -1
+	if winbufnr(3) == -1
 	    if tabpagenr('$') == 1
 		" Only one tag page is present
                 "
@@ -1742,11 +1746,18 @@ function! s:Tlist_Window_Init()
             autocmd BufEnter * silent
                 \ call s:Tlist_Window_Open_File_Fold(expand('<abuf>'))
         endif
-        " Exit Vim itself if only the taglist window is present (optional)
+
+        " Exit Vim itself if only the taglist window is present (optional)	
+	let s:NERDTreeBufName = 'NERD_tree_'
         if g:Tlist_Exit_OnlyWindow
-	    autocmd BufEnter __Tag_List__ nested
-			\ call s:Tlist_Window_Exit_Only_Window()
+	    augroup Exit_onlywindow
+                exec "autocmd BufEnter ". s:NERDTreeBufName .
+			\"* call s:Tlist_Window_Exit_Only_Window()"  
+	    	autocmd BufEnter __Tag_List__ nested
+				\ call s:Tlist_Window_Exit_Only_Window()
+	    augroup end
         endif
+
         if s:tlist_app_name != "winmanager" &&
                     \ !g:Tlist_Process_File_Always &&
                     \ (!has('gui_running') || !g:Tlist_Show_Menu)
