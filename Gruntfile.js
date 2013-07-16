@@ -13,16 +13,13 @@ module.exports = function(grunt){
         shell: {
             ctags: {
                 command: [
-                        'cp ctags .ctags',
+                        'cp ctags $HOME/.ctags',
                         'ctags -f - --format=2 --excmd=pattern --fields=nks '+
                               '--sort=no --language-force=css --css-types=cis test.css'
                 ].join('&&')
             },
             release: {
-                command: [ 
-                    'cp ctags $HOME/.ctags',
-                    'rm .ctags'
-                ].join('&&')
+                command: 'cp ctags $HOME/.ctags',
             },
             options:{
                 stdout:true
