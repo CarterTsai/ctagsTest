@@ -1,0 +1,6 @@
+--langdef=css
+--langmap=css:.css
+--regex-css=/^\.(-?[_a-zA-Z]+[_a-zA-Z0-9-]+)\s?\{/\1/c/
+--regex-css=/^\.(\w+\s?[>]+\s?[.]+\w+)/\1/s/
+--regex-css=/^#(\w+)/\1/i/
+--css-kinds=+cis
