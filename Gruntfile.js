@@ -14,6 +14,7 @@ module.exports = function(grunt){
             ctags: {
                 command: [
                         'cp ctags $HOME/.ctags',
+                        'cp taglist.vim $HOME/.vim/bundle/taglist/plugin/taglist.vim',
                         'ctags -f - --format=2 --excmd=pattern --fields=nks '+
                               '--sort=no --language-force=css --css-types=cis test.css'
                 ].join('&&')

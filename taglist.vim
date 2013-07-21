@@ -413,6 +413,8 @@ let s:tlist_def_cobol_settings = 'cobol;d:data;f:file;g:group;p:paragraph;' .
 
 " css
 let s:tlist_def_css_settings = 'css;c:class;i:id;s:selector' 
+" scss
+let s:tlist_def_scss_settings = 'css;c:class;i:id;s:selector' 
 
 " D programming language
 let s:tlist_def_d_settings = 'c++;n:namespace;v:variable;t:typedef;' .
